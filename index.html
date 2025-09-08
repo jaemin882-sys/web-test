@@ -5,6 +5,47 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hanwool</title>
     <style>
+/* 모바일 화면을 위한 반응형 스타일 (화면 너비 768px 이하) */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column; /* 헤더 항목들을 세로로 정렬 */
+        height: auto;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        gap: 10px;
+    }
+    
+    .header-left {
+        width: 100%;
+        justify-content: center;
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    nav ul {
+        flex-wrap: wrap; /* 메뉴 항목을 여러 줄로 감싸도록 설정 */
+        justify-content: center; /* 메뉴 항목들을 중앙 정렬 */
+        gap: 10px;
+    }
+    
+    .lang-switcher {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .content-sections {
+        flex-direction: column; /* 콘텐츠 섹션들을 세로로 정렬 */
+        padding: 1rem;
+    }
+    
+    section {
+        max-width: 100%; /* 섹션 너비를 화면에 꽉 차게 설정 */
+    }
+    
+    .main-image-container img {
+        height: 200px; /* 이미지 높이를 모바일에 맞게 줄임 */
+    }
+}
         /* "환영합니다" 섹션을 박스 없이 넓게 보이게 설정 */
         #home {
             background-color: transparent; /* 배경을 투명하게 만듭니다. */
