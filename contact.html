@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>연락 방법 - Hanwool</title>
+    <style>
+        /* 기본 스타일 */
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* 헤더 (메뉴바) 스타일 */
+        header {
+            background-color: #333;
+            color: white;
+            padding: 0 20px;
+            height: 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .header-logo img {
+            height: 15px;
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 0 0.5rem;
+            transition: background-color 0.3s;
+        }
+
+        nav ul li a:hover {
+            background-color: #575757;
+            border-radius: 5px;
+        }
+
+        /* 언어 선택 메뉴 스타일 */
+        .lang-switcher {
+            display: flex;
+            gap: 5px;
+            border: 1px solid white;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .lang-switcher button {
+            background-color: transparent;
+            color: white;
+            border: none;
+            padding: 0.5rem 0.8rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .lang-switcher button.active {
+            background-color: #575757;
+        }
+        
+        /* 메인 콘텐츠 스타일 */
+        main {
+            padding: 2rem;
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-top: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 2.5rem;
+        }
+
+        .contact-section {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .contact-info {
+            background-color: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 2rem;
+        }
+
+        .contact-info h2 {
+            color: #007bff;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .contact-info p {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            text-align: center;
+        }
+
+        /* 지도 스타일 */
+        .map-container {
+            width: 100%;
+            height: 400px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* 푸터 (Copyright) 스타일 */
+        footer {
+            background-color: #333;
+            text-align: center;
+            padding: 0.2rem 0;
+            font-size: 0.9rem;
+            margin-top: 2rem;
+        }
+
+        footer p {
+            color: #aaa;
+        }
+
+        /* 모바일 화면을 위한 반응형 스타일 */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                height: auto;
+                padding-top: 10px;
+                padding-bottom: 10px;
+                gap: 10px;
+            }
+            .header-left {
+                width: 100%;
+                justify-content: center;
+                flex-direction: column;
+                gap: 10px;
+            }
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 10px;
+            }
+            .lang-switcher {
+                width: 100%;
+                justify-content: center;
+            }
+            main {
+                padding: 1rem;
+                margin-top: 1rem;
+            }
+            h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-left">
+            <div class="header-logo">
+                <img src="HW.png" alt="회사 로고">
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html" data-lang-key="home_menu">홈</a></li>
+                    <li><a href="products.html" data-lang-key="products_menu">제품</a></li>
+                    <li><a href="pcb-inspection.html" data-lang-key="pcb_inspection_menu">PCB 검사</a></li>
+                    <li><a href="about-us.html" data-lang-key="about_menu">회사 소개</a></li>
+                    <li><a href="contact.html" data-lang-key="contact_menu">연락 방법</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="lang-switcher">
+            <button id="lang-ko" class="active">한글</button>
+            <button id="lang-en">Eng</button>
+        </div>
+    </header>
+
+    <main>
+        <h1 data-lang-key="contact_title">연락 방법</h1>
+        
+        <p data-lang-key="contact_intro" style="text-align: center; max-width: 600px; margin: 0 auto 2rem; font-size: 1.1rem;">
+            궁금한 점이나 문의 사항이 있으시면 언제든지 연락해 주세요. 신속하고 정확하게 답변해 드리겠습니다.
+        </p>
+
+        <div class="contact-section">
+            <div class="contact-info">
+                <h2 data-lang-key="contact_info_h2">연락 정보</h2>
+                <p data-lang-key="contact_email"><strong>이메일:</strong> sales@hwool.co.kr</p>
+                <p data-lang-key="contact_address"><strong>주소:</strong> 경기도 광명시 오리로 651번길 8, 현대테라타워 1406호 (14303)</p>
+            </div>
+            <div class="map-container">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d791.7662250141498!2d126.8759564500816!3d37.45918954965105!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sko!2skr!4v1757410290645!5m2!1sko!2skr" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </div>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Hanwool. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // 언어별 텍스트를 저장하는 객체
+        const langData = {
+            ko: {
+                home_menu: "홈",
+                products_menu: "제품",
+                pcb_inspection_menu: "PCB 검사",
+                about_menu: "회사 소개",
+                contact_menu: "연락 방법",
+                contact_title: "연락 방법",
+                contact_intro: "궁금한 점이나 문의 사항이 있으시면 언제든지 연락해 주세요. <br>신속하고 정확하게 답변해 드리겠습니다.",
+                contact_info_h2: "연락 정보",
+                contact_email: "<strong>이메일:</strong> sales@hwool.co.kr",
+                contact_address: "<strong>주소:</strong> 경기도 광명시 오리로 651번길 8, 현대테라타워 1406호 (14303)"
+            },
+            en: {
+                home_menu: "Home",
+                products_menu: "Products",
+                pcb_inspection_menu: "PCB Inspection",
+                about_menu: "About Us",
+                contact_menu: "Contact",
+                contact_title: "Contact",
+                contact_intro: "If you have any questions or inquiries, please feel free to contact us. <br>We will provide a quick and accurate response.",
+                contact_info_h2: "Contact Information",
+                contact_email: "<strong>Email:</strong> sales@hwool.co.kr",
+                contact_address: "<strong>Address:</strong> Teratower room1406, Ori-ro 651beon-gil 8, Gwangmyeong-si, Gyeonggi-do, South Korea (14303)"
+            }
+        };
+
+        // 언어 변환 함수
+        function setLanguage(lang) {
+            document.querySelectorAll('[data-lang-key]').forEach(element => {
+                const key = element.getAttribute('data-lang-key');
+                if (key) {
+                    element.innerHTML = langData[lang][key];
+                }
+            });
+            
+            document.getElementById('lang-ko').classList.remove('active');
+            document.getElementById('lang-en').classList.remove('active');
+            document.getElementById('lang-' + lang).classList.add('active');
+        }
+
+        const initialLang = localStorage.getItem('lang') || 'ko';
+        setLanguage(initialLang);
+
+        document.getElementById('lang-ko').addEventListener('click', () => {
+            setLanguage('ko');
+            localStorage.setItem('lang', 'ko');
+        });
+
+        document.getElementById('lang-en').addEventListener('click', () => {
+            setLanguage('en');
+            localStorage.setItem('lang', 'en');
+        });
+    </script>
+</body>
+</html>

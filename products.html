@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hanwool</title>
+    <style>
+        /* 기본 스타일 */
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* 헤더 (메뉴바) 스타일 */
+        header {
+            background-color: #333;
+            color: white;
+            padding: 0 20px;
+            height: 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .header-logo img {
+            height: 15px; /* 로고 높이 15px로 설정 */
+        }
+        
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 0 0.5rem;
+            transition: background-color 0.3s;
+        }
+
+        nav ul li a:hover {
+            background-color: #575757;
+            border-radius: 5px;
+        }
+
+        /* 언어 선택 메뉴 스타일 */
+        .lang-switcher {
+            display: flex;
+            gap: 5px;
+            border: 1px solid white;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .lang-switcher button {
+            background-color: transparent;
+            color: white;
+            border: none;
+            padding: 0.5rem 0.8rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .lang-switcher button.active {
+            background-color: #575757;
+        }
+
+        .lang-switcher button:hover {
+            background-color: #575757;
+        }
+        
+        /* 메인 콘텐츠 스타일 */
+        main {
+            padding: 2rem;
+            max-width: 1000px; /* 메인 콘텐츠 너비 확장 */
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-top: 2rem;
+        }
+        
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        /* 수정된 부분: intro 텍스트 크기 조정 */
+        p[data-lang-key="products_intro_text"] {
+            text-align: center;
+            margin-bottom: 3rem;
+            font-size: 1rem; /* 1.1rem -> 1rem으로 축소 */
+            color: #666;
+            line-height: 1.7; /* 줄 간격 조정 */
+        }
+
+        .product-section {
+            display: flex;
+            flex-direction: column; /* 기본은 세로 정렬 */
+            gap: 2rem;
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .product-section:last-child {
+            border-bottom: none; /* 마지막 섹션은 아래 선 없음 */
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .product-content {
+            display: flex;
+            flex-direction: row; /* 내용을 가로로 정렬 */
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .product-content.reverse {
+            flex-direction: row-reverse; /* 이미지와 텍스트 순서 반전 */
+        }
+
+        .product-text {
+            flex: 1;
+        }
+
+        .product-image-container {
+            flex: 1;
+            min-width: 300px; /* 이미지 컨테이너 최소 너비 */
+            max-width: 400px; /* 이미지 컨테이너 최대 너비 */
+            text-align: center;
+        }
+
+        .product-image-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .product-text h2 {
+            margin-top: 0;
+            color: #007bff;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        /* 수정된 부분: 제품 설명 텍스트 크기 조정 */
+        .product-text p {
+            color: #555;
+            font-size: 1rem; /* 1.1rem -> 1rem으로 축소 */
+            line-height: 1.7; /* 줄 간격 조정 */
+            margin-bottom: 1rem;
+        }
+        
+        /* 푸터 (Copyright) 스타일 */
+        footer {
+            background-color: #333;
+            text-align: center;
+            padding: 0.2rem 0; /* index.html과 동일하게 설정 */
+            font-size: 0.9rem;
+            margin-top: 2rem;
+        }
+
+        footer p {
+            color: #aaa; /* 명시적으로 글씨색 지정 */
+        }
+
+        /* 모바일 화면을 위한 반응형 스타일 (화면 너비 768px 이하) */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                height: auto;
+                padding-top: 10px;
+                padding-bottom: 10px;
+                gap: 10px;
+            }
+            
+            .header-left {
+                width: 100%;
+                justify-content: center;
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 10px;
+            }
+            
+            .lang-switcher {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            main {
+                padding: 1rem;
+                margin-top: 1rem;
+            }
+
+            .product-content {
+                flex-direction: column; /* 모바일에서는 세로로 정렬 */
+                text-align: center;
+            }
+
+            .product-content.reverse {
+                flex-direction: column; /* 모바일에서는 순서 반전 유지 필요 없음 */
+            }
+
+            .product-image-container {
+                min-width: unset;
+                max-width: 100%;
+            }
+
+            .product-text {
+                width: 100%;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="header-left">
+            <div class="header-logo">
+                <img src="HW.png" alt="회사 로고">
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html" data-lang-key="home_menu">홈</a></li>
+                    <li><a href="products.html" data-lang-key="products_menu">제품</a></li>
+                    <li><a href="pcb-inspection.html" data-lang-key="pcb_inspection_menu">PCB 검사</a></li>
+                    <li><a href="about-us.html" data-lang-key="about_menu">회사 소개</a></li>
+                    <li><a href="contact.html" data-lang-key="contact_menu">연락 방법</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="lang-switcher">
+            <button id="lang-ko" class="active">한글</button>
+            <button id="lang-en">Eng</button>
+        </div>
+    </header>
+
+    <main>
+        <h1 data-lang-key="products_page_title">한울의 전자부품 솔루션</h1>
+        <p data-lang-key="products_intro_text" style="text-align: center; margin-bottom: 3rem; font-size: 1.1rem; color: #666;">
+            한울은 급변하는 전자 산업 환경 속에서 고객의 성공을 위한 최적의 전자부품 솔루션을 제공합니다.<br>
+            품질, 혁신, 그리고 신뢰를 바탕으로 다양한 산업 분야에 필요한 핵심 부품들을 만나보세요.
+        </p>
+
+        <div class="product-section">
+            <div class="product-content">
+                <div class="product-text">
+                    <h2 data-lang-key="products_led_title">고성능 LED 부품</h2>
+                    <p data-lang-key="products_led_text_1">
+                        한울은 최신 기술이 집약된 다양한 종류와 크기의 **고품질 LED 부품**을 공급합니다.
+                        일반 조명용 LED부터 특수 산업용 고휘도 LED, 디스플레이 백라이트용 LED,
+                        그리고 차량용 LED에 이르기까지 폭넓은 라인업을 갖추고 있습니다.
+                    </p>
+                    <p data-lang-key="products_led_text_2">
+                        저전력 고효율 설계로 에너지 절감에 기여하며, 긴 수명과 뛰어난 색 재현력으로
+                        제품의 가치를 높여드립니다. 특히, UV 경화기, 살균 장치 등 특수 용도에 최적화된 **UV LED** 솔루션도 제공하여 제품의 완성도를 극대화합니다.
+                    </p>
+                </div>
+                <div class="product-image-container">
+                    <img src="led_product_example.jpg" alt="다양한 종류의 LED 부품">
+                </div>
+            </div>
+        </div>
+
+        <div class="product-section">
+            <div class="product-content reverse"> <div class="product-text">
+                    <h2 data-lang-key="products_pcb_title">정밀 설계 PCB</h2>
+                    <p data-lang-key="products_pcb_text_1">
+                        고성능 전자제품의 핵심, **정밀 설계된 PCB**는 한울의 자랑입니다.
+                        단면, 양면 PCB부터 다층 PCB, HDI(High Density Interconnect) PCB,
+                        그리고 플렉서블 PCB(FPCB)에 이르기까지 고객의 설계 요구에 최적화된
+                        다양한 유형의 회로 기판을 전문적으로 유통합니다.
+                    </p>
+                    <p data-lang-key="products_pcb_text_2">
+                        첨단 제조 공정을 거친 PCB는 높은 신뢰성과 내구성을 보장하며,
+                        열악한 환경에서도 안정적인 작동을 유지합니다.
+                        의료 기기, 통신 장비, 자동차 전장 부품 등 고도의 정밀성이 요구되는
+                        분야에서 한울의 검증된 PCB 솔루션을 경험해 보세요.
+                    </p>
+                </div>
+                <div class="product-image-container">
+                    <img src="pcb_product_example.jpg" alt="복잡한 회로가 있는 PCB 기판">
+                </div>
+            </div>
+        </div>
+
+        <div class="product-section">
+            <div class="product-content">
+                <div class="product-text">
+                    <h2 data-lang-key="products_etc_title">종합 전자 부품 솔루션</h2>
+                    <p data-lang-key="products_etc_text_1">
+                        한울은 LED 및 PCB 외에도 **다양한 종류의 전자 부품**을 폭넓게 취급합니다.
+                        저항기, 캐패시터, 인덕터와 같은 수동 부품부터 다이오드, 트랜지스터,
+                        집적 회로(IC) 등 능동 부품에 이르기까지, 고객의 생산 라인에 필요한
+                        모든 핵심 부품들을 원스톱으로 공급합니다.
+                    </p>
+                    <p data-lang-key="products_etc_text_2">
+                        글로벌 파트너 네트워크를 통해 최신 기술 동향에 발맞춰 신뢰할 수 있는
+                        부품만을 엄선하여 제공합니다. 부품 수급의 어려움이나 복잡한 유통 과정을
+                        한울이 대신 해결하여, 고객사는 핵심 비즈니스에 집중할 수 있도록 돕습니다.
+                    </p>
+                </div>
+                <div class="product-image-container">
+                    <img src="other_components_example.jpg" alt="다양한 전자 부품">
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Hanwool. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // 언어별 텍스트를 저장하는 객체
+        const langData = {
+            ko: {
+                home_menu: "홈",
+                products_menu: "제품",
+                pcb_inspection_menu: "PCB 검사",
+                about_menu: "회사 소개",
+                contact_menu: "연락 방법",
+                products_page_title: "한울의 전자부품 솔루션",
+                products_intro_text: "한울은 급변하는 전자 산업 환경 속에서 고객의 성공을 위한 최적의 전자부품 솔루션을 제공합니다.<br>품질, 혁신, 그리고 신뢰를 바탕으로 다양한 산업 분야에 필요한 핵심 부품들을 만나보세요.",
+                products_led_title: "고성능 LED 부품",
+                products_led_text_1: "한울은 최신 기술이 집약된 다양한 종류와 크기의 *고품질 LED 부품*을 <공급합니다. 일반 조명용 LED부터 특수 산업용 고휘도 LED, 디스플레이 백라이트용 LED, 그리고 차량용 LED에 이르기까지 폭넓은 라인업을 갖추고 있습니다.",
+                products_led_text_2: "저전력 고효율 설계로 에너지 절감에 기여하며, 긴 수명과 뛰어난 색 재현력으로 제품의 가치를 높여드립니다. 특히, UV 경화기, 살균 장치 등 특수 용도에 최적화된 **UV LED** 솔루션도 제공하여 제품의 완성도를 극대화합니다.",
+                products_pcb_title: "정밀 설계 PCB",
+                products_pcb_text_1: "고성능 전자제품의 핵심, *정밀 설계된 PCB*는 한울의 자랑입니다. <br>단면, 양면 PCB부터 다층 PCB, HDI(High Density Interconnect) PCB, 그리고 플렉서블 PCB(FPCB)에 이르기까지 고객의 설계 요구에 최적화된 다양한 유형의 회로 기판을 전문적으로 유통합니다.",
+                products_pcb_text_2: "첨단 제조 공정을 거친 PCB는 높은 신뢰성과 내구성을 보장하며, 열악한 환경에서도 안정적인 작동을 유지합니다. 의료 기기, 통신 장비, 자동차 전장 부품 등 고도의 정밀성이 요구되는 분야에서 한울의 검증된 PCB 솔루션을 경험해 보세요.",
+                products_etc_title: "종합 전자 부품 솔루션",
+                products_etc_text_1: "한울은 LED 및 PCB 외에도 *다양한 종류의 전자 부품*을 폭넓게 취급합니다.<br> 저항기, 캐패시터, 인덕터와 같은 수동 부품부터 다이오드, 트랜지스터, 집적 회로(IC) 등 능동 부품에 이르기까지, 고객의 생산 라인에 필요한 모든 핵심 부품들을 원스톱으로 공급합니다.",
+                products_etc_text_2: "글로벌 파트너 네트워크를 통해 최신 기술 동향에 발맞춰 신뢰할 수 있는 부품만을 엄선하여 제공합니다. 부품 수급의 어려움이나 복잡한 유통 과정을 한울이 대신 해결하여, 고객사는 핵심 비즈니스에 집중할 수 있도록 돕습니다."
+            },
+            en: {
+                home_menu: "Home",
+                products_menu: "Products",
+                pcb_inspection_menu: "PCB Inspection",
+                about_menu: "About Us",
+                contact_menu: "Contact",
+                products_page_title: "Hanwool's Advanced Electronic Component Solutions",
+                products_intro_text: "Hanwool provides optimal electronic component solutions for our customers' success in a rapidly changing electronic industry.<br>Discover essential components for various industrial sectors based on quality, innovation, and trust.",
+                products_led_title: "High-Performance LED Components",
+                products_led_text_1: "Hanwool supplies high-quality LED components of various types and sizes, incorporating the latest technology. We offer a wide lineup, from general lighting LEDs to high-brightness LEDs for special industrial use, display backlight LEDs, and automotive LEDs.",
+                products_led_text_2: "Our low-power, high-efficiency designs contribute to energy savings, and our long lifespan and excellent color reproduction enhance product value. We also provide **UV LED** solutions optimized for special applications such as UV curing machines and sterilization devices, maximizing product completeness.",
+                products_pcb_title: "Precision Designed PCBs",
+                products_pcb_text_1: "The core of high-performance electronic products, precisely designed PCBs, are Hanwool's pride. We specialize in distributing various types of circuit boards optimized for customer design requirements, from single-layer and double-layer PCBs to multi-layer PCBs, HDI (High Density Interconnect) PCBs, and Flexible PCBs (FPCBs).",
+                products_pcb_text_2: "PCBs produced through advanced manufacturing processes ensure high reliability and durability, maintaining stable operation even in harsh environments. Experience Hanwool's proven PCB solutions in fields requiring high precision, such as medical devices, communication equipment, and automotive electronic components.",
+                products_etc_title: "Comprehensive Electronic Component Solutions",
+                products_etc_text_1: "In addition to LEDs and PCBs, Hanwool handles a wide range of other electronic components. From passive components like resistors, capacitors, and inductors to active components such as diodes, transistors, and integrated circuits (ICs), we supply all essential components needed for our customers' production lines as a one-stop solution.",
+                products_etc_text_2: "Through our global partner network, we carefully select and provide only reliable components that keep pace with the latest technological trends. Hanwool resolves difficulties in component procurement and complex distribution processes, allowing our customers to focus on their core business."
+            }
+        };
+
+        // 언어 변환 함수
+        function setLanguage(lang) {
+            document.querySelectorAll('[data-lang-key]').forEach(element => {
+                const key = element.getAttribute('data-lang-key');
+                if (key) {
+                    // HTML 태그가 포함될 수 있는 경우 innerHTML 사용
+                    if (key === 'products_intro_text' || key.includes('text')) {
+                        element.innerHTML = langData[lang][key];
+                    } else {
+                        element.textContent = langData[lang][key];
+                    }
+                }
+            });
+            
+            // Active 클래스 설정
+            document.getElementById('lang-ko').classList.remove('active');
+            document.getElementById('lang-en').classList.remove('active');
+            document.getElementById('lang-' + lang).classList.add('active');
+        }
+
+        const initialLang = localStorage.getItem('lang') || 'ko';
+        setLanguage(initialLang);
+
+        document.getElementById('lang-ko').addEventListener('click', () => {
+            setLanguage('ko');
+            localStorage.setItem('lang', 'ko');
+        });
+
+        document.getElementById('lang-en').addEventListener('click', () => {
+            setLanguage('en');
+            localStorage.setItem('lang', 'en');
+        });
+    </script>
+</body>
+</html>

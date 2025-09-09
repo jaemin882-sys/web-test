@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PCB 검사 - Hanwool</title>
+    <style>
+        /* 기본 스타일 */
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* 헤더 (메뉴바) 스타일 */
+        header {
+            background-color: #333;
+            color: white;
+            padding: 0 20px;
+            height: 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .header-logo img {
+            height: 15px;
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 0 0.5rem;
+            transition: background-color 0.3s;
+        }
+
+        nav ul li a:hover {
+            background-color: #575757;
+            border-radius: 5px;
+        }
+
+        /* 언어 선택 메뉴 스타일 */
+        .lang-switcher {
+            display: flex;
+            gap: 5px;
+            border: 1px solid white;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .lang-switcher button {
+            background-color: transparent;
+            color: white;
+            border: none;
+            padding: 0.5rem 0.8rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .lang-switcher button.active {
+            background-color: #575757;
+        }
+        
+        /* 메인 콘텐츠 스타일 */
+        main {
+            padding: 2rem;
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-top: 2rem;
+        }
+        
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+        
+        .section-intro {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #555;
+            font-size: 0.95rem; /* 글자 크기 조정 */
+        }
+        
+        .inspection-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 2rem;
+            gap: 2rem;
+            padding: 1.5rem;
+            background-color: #f9f9f9;
+            border-left: 5px solid #007bff;
+            border-radius: 8px;
+        }
+        
+        .inspection-item-text {
+            flex: 1;
+        }
+        
+        .inspection-item-text h2 {
+            margin-top: 0;
+            color: #007bff;
+            font-size: 1.5rem;
+        }
+        
+        .inspection-item-text p {
+            margin: 0;
+            color: #666;
+            font-size: 0.9rem; /* 글자 크기 조정 */
+        }
+        
+        .inspection-image {
+            width: 250px;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* 순서 반전 */
+        .inspection-item.reverse {
+            flex-direction: row-reverse;
+        }
+
+        /* 푸터 (Copyright) 스타일 */
+        footer {
+            background-color: #333;
+            text-align: center;
+            padding: 0.2rem 0;
+            font-size: 0.9rem;
+            margin-top: 2rem;
+        }
+
+        footer p {
+            color: #aaa;
+        }
+
+        /* 모바일 화면을 위한 반응형 스타일 */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                height: auto;
+                padding-top: 10px;
+                padding-bottom: 10px;
+                gap: 10px;
+            }
+            .header-left {
+                width: 100%;
+                justify-content: center;
+                flex-direction: column;
+                gap: 10px;
+            }
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 10px;
+            }
+            .lang-switcher {
+                width: 100%;
+                justify-content: center;
+            }
+            main {
+                padding: 1rem;
+                margin-top: 1rem;
+            }
+            .inspection-item {
+                flex-direction: column;
+                text-align: center;
+            }
+            .inspection-item.reverse {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-left">
+            <div class="header-logo">
+                <img src="HW.png" alt="회사 로고">
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html" data-lang-key="home_menu">홈</a></li>
+                    <li><a href="products.html" data-lang-key="products_menu">제품</a></li>
+                    <li><a href="pcb-inspection.html" data-lang-key="pcb_inspection_menu">PCB 검사</a></li>
+                    <li><a href="about-us.html" data-lang-key="about_menu">회사 소개</a></li>
+                    <li><a href="contact.html" data-lang-key="contact_menu">연락 방법</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="lang-switcher">
+            <button id="lang-ko" class="active">한글</button>
+            <button id="lang-en">Eng</button>
+        </div>
+    </header>
+
+    <main>
+        <h1 data-lang-key="pcb_inspection_title">한울의 정밀 PCB 검사 서비스</h1>
+        <p class="section-intro" data-lang-key="pcb_inspection_intro">
+            한울은 숙련된 전문가의 정밀한 육안 검사를 통해 PCB의 생산 오류를 최소화하고 완벽한 제품 신뢰성을 보장합니다. <br>
+            오랜 기간 축적된 기술적 노하우로 눈에 보이지 않는 미세한 결함까지 꼼꼼하게 찾아냅니다.
+        </p>
+
+        <div class="inspection-item">
+            <div class="inspection-item-text">
+                <h2 data-lang-key="pcb_inspection_process_h2">체계적인 검사 프로세스</h2>
+                <p data-lang-key="pcb_inspection_process_p">
+                    모든 PCB는 입고 시점에 <strong>숙련된 검사 전문가</strong>에게 인계됩니다.
+                    전문가는 확대경과 조명을 활용하여 부품의 극성, 위치, 납땜 상태,
+                    회로 패턴의 미세한 스크래치와 손상까지 다층적으로 검토합니다.
+                </p>
+            </div>
+            <img src="manual_inspection.jpg" alt="현미경을 이용한 육안 검사 이미지" class="inspection-image">
+        </div>
+
+        <div class="inspection-item reverse">
+            <div class="inspection-item-text">
+                <h2 data-lang-key="pcb_inspection_quality_h2">결함 분석 및 품질 보증</h2>
+                <p data-lang-key="pcb_inspection_quality_p">
+                    육안 검사 과정에서 발견된 모든 잠재적 결함은 <strong>전문 분석 단계</strong>로 넘어갑니다.
+                    결함의 종류와 원인을 정확히 파악하고, 재발 방지를 위한 피드백을 기록하여
+                    제품의 불량률을 획기적으로 낮춥니다. 최종적으로 엄격한 검사를 통과한
+                    제품만이 고객에게 전달됩니다.
+                </p>
+            </div>
+            <img src="quality_assurance.jpg" alt="품질 보증 과정 이미지" class="inspection-image">
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Hanwool. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // 언어별 텍스트를 저장하는 객체
+        const langData = {
+            ko: {
+                home_menu: "홈",
+                products_menu: "제품",
+                pcb_inspection_menu: "PCB 검사",
+                about_menu: "회사 소개",
+                contact_menu: "연락 방법",
+                pcb_inspection_title: "한울의 정밀 PCB 검사 서비스",
+                pcb_inspection_intro: "한울은 숙련된 전문가의 정밀한 육안 검사를 통해 PCB의 생산 오류를 최소화하고 완벽한 제품 신뢰성을 보장합니다. <br> 오랜 기간 축적된 기술적 노하우로 눈에 보이지 않는 미세한 결함까지 꼼꼼하게 찾아냅니다.",
+                pcb_inspection_process_h2: "체계적인 검사 프로세스",
+                pcb_inspection_process_p: "모든 PCB는 입고 시점에 <strong>숙련된 검사 전문가</strong>에게 인계됩니다. <br> 전문가는 확대경과 조명을 활용하여 부품의 극성, 위치, 납땜 상태, 회로 패턴의 미세한 <br>스크래치와 손상까지 다층적으로 검토합니다.",
+                pcb_inspection_quality_h2: "결함 분석 및 품질 보증",
+                pcb_inspection_quality_p: "육안 검사 과정에서 발견된 모든 잠재적 결함은 <strong>전문 분석 단계</strong>로 넘어갑니다. <br> 결함의 종류와 원인을 정확히 파악하고, 재발 방지를 위한 피드백을 기록하여 제품의<br> 불량률을 획기적으로 낮춥니다. 최종적으로 엄격한 검사를 통과한 제품만이 고객에게<br> 전달됩니다."
+            },
+            en: {
+                home_menu: "Home",
+                products_menu: "Products",
+                pcb_inspection_menu: "PCB Inspection",
+                about_menu: "About Us",
+                contact_menu: "Contact",
+                pcb_inspection_title: "Hanwool's Precision PCB Inspection Service",
+                pcb_inspection_intro: "Hanwool ensures perfect product reliability by minimizing PCB production errors through precise manual inspection by skilled professionals. With long-accumulated technical expertise, we meticulously find even the smallest defects invisible to the naked eye.",
+                pcb_inspection_process_h2: "Systematic Inspection Process",
+                pcb_inspection_process_p: "Every PCB is handed over to a <strong>skilled inspection professional</strong> upon arrival. Using magnifying glasses and specialized lighting, the professional performs a multi-layered review of component polarity, placement, solder joints, and even microscopic scratches or damage to circuit patterns.",
+                pcb_inspection_quality_h2: "Defect Analysis and Quality Assurance",
+                pcb_inspection_quality_p: "All potential defects found during manual inspection proceed to a <strong>professional analysis stage</strong>. We accurately identify the type and cause of defects and record feedback for recurrence prevention, which significantly reduces the product defect rate. Only products that pass a rigorous final inspection are delivered to the customer."
+            }
+        };
+
+        // 언어 변환 함수
+        function setLanguage(lang) {
+            document.querySelectorAll('[data-lang-key]').forEach(element => {
+                const key = element.getAttribute('data-lang-key');
+                if (key) {
+                    if (key === 'pcb_inspection_process_p' || key === 'pcb_inspection_quality_p' || key === 'pcb_inspection_intro') {
+                        element.innerHTML = langData[lang][key];
+                    } else {
+                        element.textContent = langData[lang][key];
+                    }
+                }
+            });
+
+            // Active 클래스 설정
+            document.getElementById('lang-ko').classList.remove('active');
+            document.getElementById('lang-en').classList.remove('active');
+            document.getElementById('lang-' + lang).classList.add('active');
+        }
+
+        const initialLang = localStorage.getItem('lang') || 'ko';
+        setLanguage(initialLang);
+
+        document.getElementById('lang-ko').addEventListener('click', () => {
+            setLanguage('ko');
+            localStorage.setItem('lang', 'ko');
+        });
+
+        document.getElementById('lang-en').addEventListener('click', () => {
+            setLanguage('en');
+            localStorage.setItem('lang', 'en');
+        });
+    </script>
+</body>
+</html>

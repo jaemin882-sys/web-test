@@ -5,94 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hanwool</title>
     <style>
-/* 모바일 화면을 위한 반응형 스타일 (화면 너비 768px 이하) */
-@media (max-width: 768px) {
-    header {
-        flex-direction: column; /* 헤더 항목들을 세로로 정렬 */
-        height: auto;
-        padding-top: 10px;
-        padding-bottom: 10px;
-        gap: 10px;
-    }
-    
-    .header-left {
-        width: 100%;
-        justify-content: center;
-        flex-direction: column;
-        gap: 10px;
-    }
-    
-    nav ul {
-        flex-wrap: wrap; /* 메뉴 항목을 여러 줄로 감싸도록 설정 */
-        justify-content: center; /* 메뉴 항목들을 중앙 정렬 */
-        gap: 10px;
-    }
-    
-    .lang-switcher {
-        width: 100%;
-        justify-content: center;
-    }
-    
-    .content-sections {
-        flex-direction: column; /* 콘텐츠 섹션들을 세로로 정렬 */
-        padding: 1rem;
-    }
-    
-    section {
-        max-width: 100%; /* 섹션 너비를 화면에 꽉 차게 설정 */
-    }
-    
-    .main-image-container img {
-        height: 200px; /* 이미지 높이를 모바일에 맞게 줄임 */
-    }
-}
-        /* "환영합니다" 섹션을 박스 없이 넓게 보이게 설정 */
-        #home {
-            background-color: transparent; /* 배경을 투명하게 만듭니다. */
-            box-shadow: none; /* 그림자 효과를 제거합니다. */
-            padding: 2rem 0; /* 위아래 패딩을 조절합니다. */
-            max-width: 800px; /* 텍스트의 최대 너비를 제한합니다. */
-            margin: 0 auto 2rem auto; /* 섹션을 중앙에 배치하고 아래 여백을 줍니다. */
-            text-align: center; /* 텍스트를 중앙 정렬합니다. */
-            flex: none; /* 플렉스 컨테이너의 일부가 되지 않게 합니다. */
-            min-width: unset; /* 최소 너비 제한을 없애줍니다. */
-        }
-
-        /* 박스 형태의 섹션들에 대한 스타일 */
-        section {
-            background-color: white; /* 흰색 배경을 사용합니다. */
-            padding: 2.5rem; /* 안쪽 여백을 넓힙니다. */
-            border-radius: 12px; /* 모서리를 둥글게 만듭니다. */
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1); /* 그림자를 더 입체적으로 만듭니다. */
-            flex: 1; /* 섹션들이 유동적으로 크기를 조절하게 합니다. */
-            min-width: 280px; /* 섹션의 최소 너비를 설정합니다. */
-            max-width: 45%; /* 섹션의 최대 너비를 설정합니다. */
-            text-align: left;
-            margin-bottom: 20px;
-            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out; /* 마우스 오버 효과를 위한 전환 */
-        }
-
-        /* 마우스 오버(Hover) 효과 */
-        section:hover {
-            transform: translateY(-5px); /* 마우스를 올렸을 때 위로 살짝 뜨는 효과 */
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15); /* 그림자를 더 진하게 */
-        }
-
-        /* "제품", "회사 소개", "연락 방법" 섹션의 제목에 아이콘과 간격 추가 */
-        section h2 {
-            display: flex; /* 아이콘과 텍스트를 나란히 정렬 */
-            align-items: center;
-            gap: 10px; /* 간격 */
-        }
-
         /* 기본 스타일 */
         body {
             font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
             line-height: 1.6;
             color: #333;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
         }
 
         /* 헤더 (메뉴바) 스타일 */
@@ -119,15 +39,10 @@
             height: 15px; /* 로고 높이 15px로 설정 */
         }
         
-        nav {
-            height: 100%;
-        }
-        
         nav ul {
             list-style-type: none;
             padding: 0;
             margin: 0;
-            height: 100%;
             display: flex;
             align-items: center;
             gap: 20px;
@@ -137,8 +52,10 @@
             color: white;
             text-decoration: none;
             font-weight: bold;
-            padding: 0 0.5rem; /* 좌우 패딩을 줄여서 메뉴 항목 간 간격 확보 */
+            padding: 0 0.5rem;
             transition: background-color 0.3s;
+            display: inline-block;
+            position: relative;
         }
 
         nav ul li a:hover {
@@ -171,236 +88,289 @@
         .lang-switcher button:hover {
             background-color: #575757;
         }
-
+        
         /* 메인 콘텐츠 스타일 */
         main {
-            padding: 0;
-            text-align: center;
-        }
-
-        .main-image-container {
-            width: 100%;
-            overflow: hidden;
-            margin-bottom: 2rem;
-        }
-
-        .main-image-container img {
-            width: 100%;
-            height: 400px;
-            object-fit: cover;
-            display: block;
-        }
-
-        .content-sections {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 20px;
             padding: 2rem;
-        }
-
-        section {
+            max-width: 1200px;
+            margin: 0 auto;
             background-color: white;
-            padding: 2rem;
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            flex: 1;
-            min-width: 280px;
-            max-width: 45%;
-            text-align: left;
-            margin-bottom: 20px;
+            margin-top: 2rem;
         }
-
-        h1, h2 {
-            color: #333;
+        
+        h1 {
+            text-align: center;
+            color: #007bff;
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
         }
 
         p {
+            font-size: 1.1rem;
+            line-height: 1.8;
             color: #555;
+            text-align: center;
+        }
+        
+        .main-image-container {
+            margin: 2rem 0;
+            text-align: center;
+            width: 100%;
+            overflow: hidden;
         }
 
-        .sub-menu {
-            list-style-type: none;
-            padding-left: 20px;
+        .main-image-container img {
+            max-width: 100%;
+            height: auto;
+            width: 100%;
+            object-fit: cover;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
 
-        /* 링크 제거 및 텍스트 스타일 변경 */
-        .sub-menu li {
-            text-decoration: none;
-            color: #555; /* 링크 색상 대신 일반 텍스트 색상 적용 */
-            font-weight: bold;
-            cursor: default; /* 마우스 커서를 기본 화살표 모양으로 변경 */
-        }
-        .sub-menu li:hover {
-            color: #333; /* 마우스 오버 시 색상 변경 효과 */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+            text-align: center;
         }
 
+        .feature-item {
+            background-color: #f9f9f9;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s;
+        }
+
+        .feature-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-item h3 {
+            color: #007bff;
+            margin-top: 0;
+            font-size: 1.5rem;
+        }
+
+        .feature-item p {
+            font-size: 1rem;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .feature-item .icon {
+            font-size: 3rem;
+            color: #007bff;
+            margin-bottom: 1rem;
+        }
+
+        /* 회사 소개 섹션 */
+        .about-section {
+            margin-top: 4rem;
+            text-align: center;
+        }
+
+        .about-section h2 {
+            font-size: 2rem;
+            color: #333;
+            margin-bottom: 1rem;
+        }
+
+        .about-section p {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
         /* 푸터 (Copyright) 스타일 */
         footer {
             background-color: #333;
-            color: #aaa;
             text-align: center;
             padding: 0.2rem 0;
             font-size: 0.9rem;
             margin-top: 2rem;
         }
+
+        footer p {
+            color: #aaa;
+        }
+        
+        /* 모바일 화면을 위한 반응형 스타일 (화면 너비 768px 이하) */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                height: auto;
+                padding-top: 10px;
+                padding-bottom: 10px;
+                gap: 10px;
+            }
+            
+            .header-left {
+                width: 100%;
+                justify-content: center;
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 10px;
+            }
+            
+            .lang-switcher {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            main {
+                padding: 1rem;
+                margin-top: 1rem;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-
-<header>
-    <div class="header-left">
-        <div class="header-logo">
-            <img src="HW.png" alt="회사 로고">
+    <header>
+        <div class="header-left">
+            <div class="header-logo">
+                <img src="HW.png" alt="회사 로고">
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html" data-lang-key="home_menu">홈</a></li>
+                    <li><a href="products.html" data-lang-key="products_menu">제품</a></li>
+                    <li><a href="pcb-inspection.html" data-lang-key="pcb_inspection_menu">PCB 검사</a></li>
+                    <li><a href="about-us.html" data-lang-key="about_menu">회사 소개</a></li>
+                    <li><a href="contact.html" data-lang-key="contact_menu">연락 방법</a></li>
+                </ul>
+            </nav>
         </div>
-        <nav>
-            <ul>
-                <li><a href="#home" data-lang-key="home_menu">홈</a></li>
-                <li><a href="#products" data-lang-key="products_menu">제품</a></li>
-                <li><a href="#pcb-inspection" data-lang-key="pcb_inspection_menu">PCB 검사</a></li>
-                <li><a href="#about-us" data-lang-key="about_menu">회사 소개</a></li>
-                <li><a href="#contact" data-lang-key="contact_menu">연락 방법</a></li>
-            </ul>
-        </nav>
-    </div>
-    <div class="lang-switcher">
-        <button id="lang-ko" class="active">한글</button>
-        <button id="lang-en">Eng</button>
-    </div>
-</header>
+        <div class="lang-switcher">
+            <button id="lang-ko" class="active">한글</button>
+            <button id="lang-en">Eng</button>
+        </div>
+    </header>
 
-<main>
-    <div class="main-image-container">
-        <img src="circuit-horizontal.png" alt="가로로 긴 3D 회로도">
-    </div>
-
-    <section id="home">
-        <h1 data-lang-key="home_title">환영합니다!</h1>
-        <p data-lang-key="home_text">
-            전자부품 유통의 새로운 기준, 한울이 만들어갑니다.
-            최고의 품질과 혁신적인 기술을 기반으로 고객의 성공적인 비즈니스를 지원하겠습니다.
-
-            급변하는 시장 속에서도 한울은 항상 고객의 목소리에 귀 기울이며, 최적의 솔루션을 제공하기 위해 끊임없이 노력합니다.
-            오랜 시간 쌓아온 경험과 전문성을 바탕으로, 고객 여러분의 든든한 파트너가 되어 함께 성장할 것을 약속드립니다.
+    <main>
+        <h1 data-lang-key="main_title">한울과 함께하는 미래</h1>
+        <p data-lang-key="main_subtitle">
+            한울은 PCB(인쇄회로기판) 및 전자부품 유통 전문 기업으로, 끊임없는 혁신과 기술력으로 고객의 성공을 돕습니다.
         </p>
-    </section>
 
-    <div class="content-sections">
-        <section id="products">
-            <h2 data-lang-key="products_title">제품</h2>
-            <ul class="sub-menu">
-                <li data-lang-key="products_led">LED</li>
-                <li data-lang-key="products_pcb">PCB</li>
-                <li data-lang-key="products_etc">그 외</li>
-            </ul>
-            <p data-lang-key="products_text">
-                한울은 고객의 다양한 요구에 맞춰 고품질의 전자부품을 공급하고 있습니다. 민수(산업용) 부품은 가격 경쟁력을 최우선으로 고려하여 효율적인 생산 라인을 구축할 수 있도록 돕습니다. 반면, 방산(군수용) 부품은 최고 수준의 품질 기준을 적용하며, 국방 규격에 맞는 품질 인증서 및 모든 필수 서류를 완벽하게 제공합니다. 신뢰와 안전이 중요한 분야에서 한울의 기술력과 전문성을 경험해 보세요.
-            </p>
-        </section>
+        <div class="main-image-container">
+            <img src="circuit-horizontal.png" alt="첨단 회로 기판을 상징하는 가로형 이미지">
+        </div>
 
-        <section id="pcb-inspection">
-            <h2 data-lang-key="pcb_inspection_title">PCB 검사</h2>
-            <p data-lang-key="pcb_inspection_text">
-                한울은 PCB의 신뢰성을 보장하기 위해 정밀 검사 서비스를 제공합니다. 숙련된 기술자의 철저한 검사 과정을 통해 납땜 불량, 부품 누락, 극성 반전과 같은 오류를 정확하게 찾아냅니다. 특히 BGA, CSP 등 복잡한 부품의 미세한 불량까지 놓치지 않는 전문성을 자랑합니다. PCB 검사를 통해 생산 공정의 오류를 최소화하고, 고객사의 제품 불량률을 획기적으로 낮춰 생산 효율성을 극대화합니다.
-            </p>
-        </section>
-
-        <section id="about-us">
-            <h2 data-lang-key="about_title">회사 소개</h2>
+        <div class="about-section">
+            <h2 data-lang-key="about_title">한울은...</h2>
             <p data-lang-key="about_text">
-                한울은 2023년 개업 이래, 전자부품 유통 시장에 새로운 바람을 일으키며 빠르게 성장해왔습니다.
-                고객과의 신뢰를 최우선으로 여기며, 투명한 유통 과정을 통해 언제나 최상의 제품만을 공급하고 있습니다.
-                축적된 경험과 전문성을 바탕으로 고객의 니즈를 정확히 파악하고 최적의 솔루션을 제공하는 것이 한울의 핵심 가치입니다.
-                앞으로도 끊임없는 연구와 노력을 통해 전자부품 시장의 미래를 선도하는 기업이 되겠습니다.
+                첨단 기술을 선도하는 PCB 및 전자 부품 유통 전문가입니다. 오랜 경험과 깊은 전문성을 바탕으로, 고객의 다양한 요구에 부응하는 최적의 솔루션을 제공합니다. 우리는 단순히 부품을 공급하는 것을 넘어, 고객의 혁신적인 제품 개발을 위한 든든한 파트너가 되고자 합니다.
             </p>
-        </section>
+        </div>
+        
+        <div class="features-grid">
+            <div class="feature-item">
+                <div class="icon"><i class="fas fa-lightbulb"></i></div>
+                <h3 data-lang-key="feature1_title">최고의 기술력</h3>
+                <p data-lang-key="feature1_text">최신 기술 동향을 파악하고 혁신적인 부품을 신속하게 공급합니다.</p>
+            </div>
+            <div class="feature-item">
+                <div class="icon"><i class="fas fa-cubes"></i></div>
+                <h3 data-lang-key="feature2_title">다양한 제품군</h3>
+                <p data-lang-key="feature2_text">PCB부터 LED, IC까지 다양한 전자 부품 라인업을 갖추고 있습니다.</p>
+            </div>
+            <div class="feature-item">
+                <div class="icon"><i class="fas fa-headset"></i></div>
+                <h3 data-lang-key="feature3_title">맞춤형 솔루션</h3>
+                <p data-lang-key="feature3_text">고객의 요구에 맞춘 최적의 부품과 기술 컨설팅을 제공합니다.</p>
+            </div>
+        </div>
 
-        <section id="contact">
-            <h2 data-lang-key="contact_title">연락 방법</h2>
-            <p data-lang-key="contact_text">궁금한 점이 있으시면 언제든지 편하게 문의해 주세요.<br><strong>이메일:</strong> sales@hwool.com</p>
-        </section>
-    </div>
-</main>
+    </main>
 
-<footer>
-    <p>&copy; 2025 Hanwool. All rights reserved.</p>
-</footer>
+    <footer>
+        <p>&copy; 2025 Hanwool. All rights reserved.</p>
+    </footer>
 
-<script>
-    // 언어별 텍스트를 저장하는 객체
-    const langData = {
-        ko: {
-            home_menu: "홈",
-            products_menu: "제품",
-            pcb_inspection_menu: "PCB 검사",
-            about_menu: "회사 소개",
-            contact_menu: "연락 방법",
-            home_title: "환영합니다!",
-            home_text: "전자부품 유통의 새로운 기준, 한울이 만들어갑니다. 최고의 품질과 혁신적인 기술을 기반으로 고객의 성공적인 비즈니스를 지원하겠습니다. 급변하는 시장 속에서도 한울은 항상 고객의 목소리에 귀 기울이며, 최적의 솔루션을 제공하기 위해 끊임없이 노력합니다. 오랜 시간 쌓아온 경험과 전문성을 바탕으로, 고객 여러분의 든든한 파트너가 되어 함께 성장할 것을 약속드립니다.",
-            products_title: "제품",
-            products_led: "LED",
-            products_pcb: "PCB",
-            products_etc: "그 외",
-            products_text: "한울은 고객의 다양한 요구에 맞춰 고품질의 전자부품을 공급하고 있습니다. 민수(산업용) 부품은 가격 경쟁력을 최우선으로 고려하여 효율적인 생산 라인을 구축할 수 있도록 돕습니다. 반면, 방산(군수용) 부품은 최고 수준의 품질 기준을 적용하며, 국방 규격에 맞는 품질 인증서 및 모든 필수 서류를 완벽하게 제공합니다. 신뢰와 안전이 중요한 분야에서 한울의 기술력과 전문성을 경험해 보세요.",
-            pcb_inspection_title: "PCB 검사",
-            pcb_inspection_text: "한울은 PCB의 신뢰성을 보장하기 위해 정밀 검사 서비스를 제공합니다. 숙련된 기술자의 철저한 검사 과정을 통해 납땜 불량, 부품 누락, 극성 반전과 같은 오류를 정확하게 찾아냅니다. 특히 BGA, CSP 등 복잡한 부품의 미세한 불량까지 놓치지 않는 전문성을 자랑합니다. PCB 검사를 통해 생산 공정의 오류를 최소화하고, 고객사의 제품 불량률을 획기적으로 낮춰 생산 효율성을 극대화합니다.",
-            about_title: "회사 소개",
-            about_text: "한울은 2023년 개업 이래, 전자부품 유통 시장에 새로운 바람을 일으키며 빠르게 성장해왔습니다. 고객과의 신뢰를 최우선으로 여기며, 투명한 유통 과정을 통해 언제나 최상의 제품만을 공급하고 있습니다. 축적된 경험과 전문성을 바탕으로 고객의 니즈를 정확히 파악하고 최적의 솔루션을 제공하는 것이 한울의 핵심 가치입니다. 앞으로도 끊임없는 연구와 노력을 통해 전자부품 시장의 미래를 선도하는 기업이 되겠습니다.",
-            contact_title: "연락 방법",
-            contact_text: "궁금한 점이 있으시면 언제든지 편하게 문의해 주세요.<br><strong>이메일:</strong> sales@hwool.com"
-        },
-        en: {
-            home_menu: "Home",
-            products_menu: "Products",
-            pcb_inspection_menu: "PCB Inspection",
-            about_menu: "About Us",
-            contact_menu: "Contact",
-            home_title: "Welcome!",
-            home_text: "Hanwool is setting a new standard for electronic component distribution. We support our customers' successful business based on the highest quality and innovative technology. In a rapidly changing market, Hanwool always listens closely to our customers and strives to provide optimal solutions. Based on our extensive experience and expertise, we promise to be your reliable partner and grow with you.",
-            products_title: "Products",
-            products_led: "LED",
-            products_pcb: "PCB",
-            products_etc: "Others",
-            products_text: "Hanwool supplies high-quality electronic components to meet diverse customer needs. For commercial (civilian) components, we prioritize competitive pricing to help you establish efficient production lines. Conversely, for defense (military) components, we apply the highest quality standards and provide all necessary documentation and quality certificates that comply with military specifications. Experience Hanwool's expertise and reliability in a field where trust and safety are paramount.",
-            pcb_inspection_title: "PCB Inspection",
-            pcb_inspection_text: "Hanwool provides precise inspection services to ensure the reliability of PCBs. Our thorough inspection process, conducted by skilled technicians, accurately detects errors such as soldering flaws, missing components, and reversed polarity. We pride ourselves on our expertise in catching even tiny defects in complex components like BGAs and CSPs. Our PCB inspection services minimize production process errors and dramatically reduce product defect rates, maximizing our clients' production efficiency.",
-            about_title: "About Us",
-            about_text: "Since our establishment in 2023, Hanwool has grown rapidly, creating a new wave in the electronic component distribution market. We prioritize customer trust and supply only the best products through a transparent distribution process. Our core value is to accurately identify customer needs and provide optimal solutions based on our accumulated experience and expertise. We will continue to lead the future of the electronic component market through continuous research and effort.",
-            contact_title: "Contact",
-            contact_text: "If you have any questions, please feel free to contact us.<br><strong>Email:</strong> sales@hwool.com"
-        }
-    };
-
-    // 언어 변환 함수
-    function setLanguage(lang) {
-        document.querySelectorAll('[data-lang-key]').forEach(element => {
-            const key = element.getAttribute('data-lang-key');
-            if (key) {
-                if (key === 'contact_text') {
-                    element.innerHTML = langData[lang][key];
-                } else {
-                    element.textContent = langData[lang][key];
-                }
+    <script>
+        // 언어별 텍스트를 저장하는 객체
+        const langData = {
+            ko: {
+                home_menu: "홈",
+                products_menu: "제품",
+                pcb_inspection_menu: "PCB 검사",
+                about_menu: "회사 소개",
+                contact_menu: "연락 방법",
+                main_title: "한울과 함께하는 미래",
+                main_subtitle: "한울은 PCB(인쇄회로기판) 및 전자부품 유통 전문 기업으로, 끊임없는 혁신과 기술력으로 고객의 성공을 돕습니다.",
+                about_title: "한울은...",
+                about_text: "첨단 기술을 선도하는 PCB 및 전자 부품 유통 전문가입니다. 오랜 경험과 깊은 전문성을 바탕으로, <br>고객의 다양한 요구에 부응하는 최적의 솔루션을 제공합니다. 우리는 단순히 부품을 공급하는 것을<br>넘어, 고객의 혁신적인 제품 개발을 위한 든든한 파트너가 되고자 합니다.",
+                feature1_title: "최고의 기술력",
+                feature1_text: "최신 기술 동향을 파악하고 혁신적인 부품을 신속하게 공급합니다.",
+                feature2_title: "다양한 제품군",
+                feature2_text: "PCB부터 LED, IC까지 다양한 전자 부품 <br>라인업을 갖추고 있습니다.",
+                feature3_title: "맞춤형 솔루션",
+                feature3_text: "고객의 요구에 맞춘 최적의 부품과 기술 <br>컨설팅을 제공합니다."
+            },
+            en: {
+                home_menu: "Home",
+                products_menu: "Products",
+                pcb_inspection_menu: "PCB Inspection",
+                about_menu: "About Us",
+                contact_menu: "Contact",
+                main_title: "The Future with Hanwool",
+                main_subtitle: "Hanwool is a professional distributor of PCBs (Printed Circuit Boards) and electronic components, helping our customers succeed through continuous innovation and technical expertise.",
+                about_title: "About Hanwool",
+                about_text: "We are experts in distributing advanced PCBs and electronic components. With extensive experience and deep expertise, we provide optimal solutions to meet our customers' diverse needs. Beyond simply supplying components, we aim to be a reliable partner for our customers' innovative product development.",
+                feature1_title: "Superior Technology",
+                feature1_text: "We stay current with technological trends and quickly supply innovative components.",
+                feature2_title: "Diverse Product Range",
+                feature2_text: "We offer a wide lineup of electronic components, from PCBs to LEDs and ICs.",
+                feature3_title: "Customized Solutions",
+                feature3_text: "We provide optimal components and technical consulting tailored to customer requirements."
             }
+        };
+
+        // 언어 변환 함수
+        function setLanguage(lang) {
+            document.querySelectorAll('[data-lang-key]').forEach(element => {
+                const key = element.getAttribute('data-lang-key');
+                if (key && langData[lang][key] !== undefined) {
+                    if (key.includes('text') || key.includes('value') || key === 'main_subtitle') {
+                        element.innerHTML = langData[lang][key];
+                    } else {
+                        element.textContent = langData[lang][key];
+                    }
+                }
+            });
+            
+            // Active 클래스 설정
+            document.getElementById('lang-ko').classList.remove('active');
+            document.getElementById('lang-en').classList.remove('active');
+            document.getElementById('lang-' + lang).classList.add('active');
+        }
+
+        const initialLang = localStorage.getItem('lang') || 'ko';
+        setLanguage(initialLang);
+
+        document.getElementById('lang-ko').addEventListener('click', () => {
+            setLanguage('ko');
+            localStorage.setItem('lang', 'ko');
         });
-        document.getElementById('lang-ko').classList.remove('active');
-        document.getElementById('lang-en').classList.remove('active');
-        document.getElementById('lang-' + lang).classList.add('active');
-    }
 
-    const initialLang = localStorage.getItem('lang') || 'ko';
-    setLanguage(initialLang);
-
-    document.getElementById('lang-ko').addEventListener('click', () => {
-        setLanguage('ko');
-        localStorage.setItem('lang', 'ko');
-    });
-
-    document.getElementById('lang-en').addEventListener('click', () => {
-        setLanguage('en');
-        localStorage.setItem('lang', 'en');
-    });
-</script>
+        document.getElementById('lang-en').addEventListener('click', () => {
+            setLanguage('en');
+            localStorage.setItem('lang', 'en');
+        });
+    </script>
 </body>
 </html>
